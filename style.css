@@ -1,7 +1,9 @@
 
 body {
-    font-family: 'Arial', sans-serif;
-	font-style: italic;
+    font-family: 'Whisper', cursive;
+	 font-size: 2.0em;
+	font-style: italic; /* optionnel, car Whisper est déjà cursive */
+  letter-spacing: 0.05em;
     background-color: #fff8e1;
     margin: 0;
     padding: 0;
@@ -29,7 +31,7 @@ main {
 }
 
 .menu-category h2 {
-    color: #ff007f;
+    color: black;
     border-bottom: 2px solid #8b0000;
     padding-bottom: 0.2em;
 }
@@ -71,8 +73,9 @@ main {
 
 .menu-button h3 {
     margin: 0;
-    font-size: 1.1em;
-    color: #ff007f;
+	font-family: 'Whisper', cursive;
+    font-size: 1.7em;
+    color: purple;
 }
 
 .menu-button p {
@@ -104,3 +107,31 @@ h2.toggle:hover {
 
 
 
+.menu-item {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 1rem;
+    max-width: 400px;
+    margin: 1rem auto;
+    text-align: center;
+    background-color: #fff;
+    box-shadow: 0 0 10px #eee;
+}
+
+.pizza-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.menu-button {
+    padding: 0.8rem 1.5rem;
+    background-color: #000;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1em;
+    cursor: pointer;
+    margin-top: 1rem;
+}
