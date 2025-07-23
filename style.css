@@ -1,9 +1,6 @@
 
 body {
-    font-family: 'Whisper', cursive;
-	 font-size: 1.0em;
-	font-style: italic; /* optionnel, car Whisper est déjà cursive */
-  letter-spacing: 0.05em;
+    font-family: 'Arial', sans-serif;
     background-color: #fff8e1;
     margin: 0;
     padding: 0;
@@ -31,7 +28,7 @@ main {
 }
 
 .menu-category h2 {
-    color: black;
+    color: #ff007f;
     border-bottom: 2px solid #8b0000;
     padding-bottom: 0.2em;
 }
@@ -73,9 +70,8 @@ main {
 
 .menu-button h3 {
     margin: 0;
-	font-family: 'Whisper', cursive;
-    font-size: 0,7em;
-    color: purple;
+    font-size: 1.1em;
+    color: #ff007f;
 }
 
 .menu-button p {
@@ -104,6 +100,3 @@ h2.toggle:hover {
 .menu-item {
   margin: 10px 0;
 }
-
-
-
