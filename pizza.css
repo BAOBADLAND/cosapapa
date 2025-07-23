@@ -1,0 +1,32 @@
+.menu-item {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 1rem;
+    max-width: 400px;
+    margin: 1rem auto;
+    text-align: center;
+    background-color: #fff;
+    box-shadow: 0 0 10px #eee;
+}
+
+.menu-item h3 {
+    margin-top: 0;
+}
+
+.menu-button {
+    margin-top: 1rem;
+    padding: 0.8rem 1.5rem;
+    background-color: #000;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.pizza-image {
+    width: 100%;
+    height: auto;
+    margin-top: 1rem;
+    border-radius: 8px;
+}
