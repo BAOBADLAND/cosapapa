@@ -8,7 +8,7 @@ body {
 }
 
 header {
-    background-color: #f8d146;
+    <--background-color: #f8d146;-->
     padding: 1em;
     text-align: center;
 }
