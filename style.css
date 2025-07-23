@@ -28,7 +28,7 @@ main {
 }
 
 .menu-category h2 {
-    color: #8b0000;
+    color: #ff007f;
     border-bottom: 2px solid #8b0000;
     padding-bottom: 0.2em;
 }
@@ -59,6 +59,11 @@ main {
     transition: background-color 0.2s ease;
 }
 
+.menu-button {
+    background-color: rgba(128, 128, 128, 0.5);
+}
+
+
 .menu-button:hover {
     background-color: #ffe07a;
 }
@@ -66,13 +71,13 @@ main {
 .menu-button h3 {
     margin: 0;
     font-size: 1.1em;
-    color: #8b0000;
+    color: #ff007f;
 }
 
 .menu-button p {
     margin: 0.5em 0 0;
     font-size: 0.9em;
-    color: #333;
+    color: #000000;;
 }
 
 .content {
@@ -82,7 +87,7 @@ main {
 
 h2.toggle {
   cursor: pointer;
-  background-color: #f0f0f0;
+  background-color: rgba(51, 51, 51, 0.5);
   padding: 10px;
   border-radius: 8px;
   transition: background-color 0.3s;
@@ -95,4 +100,6 @@ h2.toggle:hover {
 .menu-item {
   margin: 10px 0;
 }
+
+
 
