@@ -5,17 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>COSA PAPA ?</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>COSA PAPA ?</h1>
+    <header >
+        <h1>COSA PAPA ?</h1> 
         <p>Bienvenue – commandez, dégustez !</p>
     </header>
     <main>
         <section class="menu-category">
-            <h2>🍕 Famous Papa’s Pizza</h2>
-            <div class="menu-item">
+            <h2 class="toggle">🍕 Famous Papa’s Pizza</h2>
+           <div class="content">
+		   <div class="menu-item">
 				<button class="menu-button">
                 <h3>Yellow Papa - 22€</h3>
                 <p>Sauce tomate jaune, mozzarella fior di latte, jambon de Parme, stracciatella, basilic</p>
@@ -55,11 +57,15 @@
                 <h3>Pinocchio e pistacchio - 24€</h3>
                 <p>Mozzarella fior di latte, burrata, mortadelle, crème de pistache</p>
             </div>
+			</div>
+			
         </section>
 
         <section class="menu-category">
-            <h2>🧀 Buoni prodotti</h2>
+            <h2 class="toggle">🧀 Buoni prodotti</h2>
+			<div class="content">
             <div class="menu-item">
+				<button class="menu-button">
                 <h3>Charcuteries italiennes à partager</h3>
                 <p>Salame - 16€</p>
 				<p>jambon de Parme - 16€</p>
@@ -67,56 +73,80 @@
 				
             </div>
             <div class="menu-item">
+				<button class="menu-button">
                 <h3>Burrata - 22€</h3>
                 <p>Burrata 125gr, Tomates cerises, pignons, huile d’olive et basilic</p>
 				<h3>Carpaccio de boeuf au pesto - 32€</h3>
                 <p>Carpaccio de boeuf au pesto, Tomates cerises, pignons, huile d’olive et basilic</p>
             </div>
+			</div>
         </section>
 
         <section class="menu-category">
-            <h2>🍰 Dolci</h2>
+            <h2 class="toggle">🍰 Dolci</h2>
+			<div class="content">
             <div class="menu-item">
+				<button class="menu-button">
                 <h3>Tiramisu - 14€</h3>
                 <p>Tiramisu au Café, poudré de cacao</p>
             </div>
             <div class="menu-item">
+				<button class="menu-button">
                 <h3>Panna cotta - 14€</h3>
                 <p>Panna cotta aux fruits rouges</p>
             </div>
 			<div class="menu-item">
+				<button class="menu-button">
                 <h3>Selection de glace</h3>
                 <p>Mini - 3€</p>
 				<p>Moyenne - 6€</p>
 				<p>Maxi - 9€</p>
+				</div>
             </div>
         </section>
 		
 		<section class="menu-category">
-            <h2>🍷 Vino</h2>
+            <h2 class="toggle">🍷 Vino</h2>
+			<div class="content">
             <div class="menu-item">
+				<button class="menu-button">
                 <h3>Champagne Brut 75cl - 160€</h3>
                 <p>Moët & Chandon - AOP</p>
 				<p>Louis Roederer - AOP</p>
             </div>
             <div class="menu-item">
+				<button class="menu-button">
                 <h3>Vin Rouge - 60€</h3>
                 <p>Emilia Romagna</p>
 				<p>Sangiovese Superiore Pandolfa Federico - 2002 DOC</p>
             </div>
 			<div class="menu-item">
+				<button class="menu-button">
                 <h3>Vin Blanc 75cl - 55€</h3>
                 <p>Piemont</p>
 				<p>Roero Arneis Giovanni Rosso - 2023 DOCG</p>
             </div>
 			<div class="menu-item">
+				<button class="menu-button">
                 <h3>Vin Rosé - Côtes-de-Provence</h3>
                 <p>Domaine de le Rouillère - 2023 AOP</p>
 				<p>75cl - 50€</p>
 				<p>150cl - 100€</p>
             </div>
-			
+			</div>
         </section>
     </main>
+	<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const toggles = document.querySelectorAll("h2.toggle");
+
+    toggles.forEach(function (h2) {
+      h2.addEventListener("click", function () {
+        const content = h2.nextElementSibling;
+        content.style.display = content.style.display === "block" ? "none" : "block";
+      });
+    });
+  });
+</script>
 </body>
 </html>
