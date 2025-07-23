@@ -1,6 +1,6 @@
 
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Whisper', cursive;
     background-color: #fff8e1;
     margin: 0;
     padding: 0;
@@ -28,7 +28,7 @@ main {
 }
 
 .menu-category h2 {
-    color: #ff007f;
+    color: black;
     border-bottom: 2px solid #8b0000;
     padding-bottom: 0.2em;
 }
@@ -65,7 +65,7 @@ main {
 
 
 .menu-button:hover {
-    background-color: #ffe07a;
+    background-color: black;
 }
 
 .menu-button h3 {
