@@ -1,3 +1,9 @@
+header {
+    <--background-color: #f8d146;-->
+    padding: 1em;
+    text-align: center;
+}
+
 .menu-item {
     border: 1px solid #ccc;
     border-radius: 10px;

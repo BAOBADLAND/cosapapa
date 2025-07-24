@@ -1,7 +1,8 @@
 
 body {
-    font-family: 'Whisper', cursive;
+    font-family: 'norican', cursive;
     background-color: #fff8e1;
+	font-style: italic;
 	font-weight: bold;
     margin: 0;
     padding: 0;
@@ -66,7 +67,7 @@ main {
 
 
 .menu-button:hover {
-    background-color: rgba(128, 128, 128, 0.8);
+    background-color: rgba(200, 200, 200, 0.8);
 }
 
 .menu-button h3 {
@@ -88,7 +89,7 @@ main {
 
 h2.toggle {
   cursor: pointer;
-  background-color: rgba(144, 144, 144, 0.7);
+  background-color: rgba(200, 200, 200, 0.6);;
   padding: 10px;
   border-radius: 8px;
   transition: background-color 0.3s;

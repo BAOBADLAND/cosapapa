@@ -6,6 +6,66 @@
 </head>
 <body>
     <h1>Test affichage image</h1>
-    <img src="osapapa_logo.png" alt="Logo Osapapa" style="max-width: 300px; height: auto;">
+    <img src="cosapapa_logo.png" alt="Logo Osapapa" style="max-width: 300px; height: auto;">
+	 <!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Générateur de QR Code</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    #qrcode {
+      margin-top: 20px;
+    }
+    .code-text {
+      font-weight: bold;
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>QR Code aléatoire</h1>
+  <button onclick="generateQRCode()">Générer</button>
+
+  <p class="code-text" id="randomCode"></p>
+  <div id="qrcode"></div>
+
+  <script>
+    function generateRandomString(length) {
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      let result = '';
+      for (let i = 0; i < length; i++) {
+        result += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      return result;
+    }
+
+    function generateQRCode() {
+      const code = generateRandomString(15);
+      document.getElementById('randomCode').textContent = code;
+
+      // Supprimer l’ancien QR code
+      document.getElementById('qrcode').innerHTML = "";
+
+      // Générer le nouveau
+      new QRCode(document.getElementById("qrcode"), {
+        text: code,
+        width: 200,
+        height: 200
+      });
+    }
+  </script>
+
+</body>
+</html>
+
+  </script>
+	
 </body>
 </html>
