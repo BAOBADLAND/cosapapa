@@ -1,6 +1,8 @@
 
 body {
     font-family: 'norican', cursive;
+    background-color: #fff8e1;
+	text-align: center;
 	font-style: italic;
 	font-weight: bold;
     margin: 0;
@@ -41,12 +43,14 @@ main {
 .menu-item h3 {
     margin: 0.2em 0;
     color: #333;
+	text-align: center;
 }
 
 .menu-item p {
     margin: 0;
     font-size: 0.9em;
     color: #666;
+	text-align: center;
 }
 .menu-button {
     width: 100%;

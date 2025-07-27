@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COSA PAPA ?</title>
+<style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-image: url("Le-Chef-Le-Groupe-Annie-Famose.jpg");
+      background-size: cover;
+	  background-attachment: fixed; <--/* ceci empêche l'image de défiler */-->
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 100vh;
+    }
+  </style>
+    <link rel="stylesheet" href="style.css">
+</head>
+<link href="https://fonts.googleapis.com/css2?family=Norican&display=swap" rel="stylesheet">
+<body>
+	
+    <header >
+	<a href="index.html">
+		<img src="cosapapa_logo.png" alt="Logo Osapapa" style="max-width: 300px; height: auto;">        <!--<h1>COSA PAPA ?</h1> 
+        <p>Bienvenue – commandez, dégustez !</p>--> </a>
+    </header>
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Mon Panier</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-image: url("Le-Chef-Le-Groupe-Annie-Famose.jpg");
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      font-family: sans-serif;
+    }
+
+    .container {
+      background-color: rgba(245, 245, 220, 0.85); /* beige translucide */
+      margin: 50px auto;
+      padding: 30px;
+      max-width: 600px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .item {
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    .total {
+      font-weight: bold;
+      margin-top: 20px;
+      font-size: 20px;
+      text-align: right;
+    }
+
+    button {
+      margin-left: 10px;
+      padding: 5px 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Votre commande</h1>
+    <div id="panier"></div>
+    <div class="total" id="total">Total : 0€</div>
+  </div>
+
+  <script>
+    function afficherPanier() {
+      const panierDiv = document.getElementById("panier");
+      const totalDiv = document.getElementById("total");
+      let panier = JSON.parse(localStorage.getItem("panier")) || [];
+
+      panierDiv.innerHTML = '';
+      let total = 0;
+
+      panier.forEach((item, index) => {
+        total += item.prix;
+
+        const div = document.createElement("div");
+        div.className = "item";
+        div.innerHTML = `${item.nom} - ${item.prix}€ <button onclick="supprimer(${index})">Supprimer</button>`;
+        panierDiv.appendChild(div);
+      });
+
+      totalDiv.innerText = `Total : ${total.toFixed(2)}€`;
+    }
+
+    function supprimer(index) {
+      let panier = JSON.parse(localStorage.getItem("panier")) || [];
+      panier.splice(index, 1);
+      localStorage.setItem("panier", JSON.stringify(panier));
+      afficherPanier();
+    }
+
+    afficherPanier();
+  </script>
+</body>
+</html>
+
+
+
+</body>
+</html>

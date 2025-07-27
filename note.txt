@@ -1,0 +1,19 @@
+bouton quantité dans les 2e page -> ajouter au panier
+
+dans le pannier, il faut un bouton "finaliser" un qr code et numéro de commande est généré
+
+un numéro de commande qui corespond à un qr code qui corespond à une commande
+
+le serveur vient ensuite scanner le qr code du client avec son appareil, il voit ensuite tout ce que le client desir, il lui repete à haute voix pour une confirmation supplémentaire en cas d'erreur et pour garder un contacte humain malgré le progrès technologique.
+
+avec ce meme qr code le client aura la possibilité de payer
+
+pour que le serveur vienne confirmer avec les client
+
+un qr code finale doit etre generé et doi faire office de facture à payer à la fin
+ce qr code sera scanner à la fin par le serveur qui vera toutes les information
+
+je veux que les clients puissent selectionner leurs diferents articles les article doivent etre stockés dans le panier, les prix additionnés.
+
+un qr code finale doit etre generé et doi faire office de facture à payer à la fin
+ce qr code sera scanner à la fin par le serveur qui vera toutes les information

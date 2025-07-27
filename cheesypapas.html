@@ -27,15 +27,48 @@
 		</a>
     </header>
 	 <div class="menu-item">
-    <a href="yellowpapa.html">
        <h3>cheesy Papa's - 24€</h3>
                 <p>Ricotta, gorgonzola, parmesan, fior di latte mozzarella, basilic</p>
-        <button class="menu-button">Commander</button>
+        <button class="menu-button">ajouter à ma commande</button>
+		<a href="panierfinal.html"><button class="menu-button">aller à ma commande</button></a>
 		<img src="imagepizza.jpg" alt="Pizza Yellow Papa" class="pizza-image">
-    </a>
 </div>
 	
-	
+	<script>
+  const btnAjouter = document.querySelector(".menu-button");
+  const itemTitle = document.querySelector("h3").innerText;
+
+  btnAjouter.addEventListener("click", () => {
+    // Extraire le nom et le prix
+    const nom = itemTitle.split(" - ")[0].trim();
+    const prix = parseFloat(itemTitle.split(" - ")[1].replace("€", "").trim());
+
+    // Récupère le panier depuis le localStorage
+    let panier = JSON.parse(localStorage.getItem("panier")) || [];
+
+    // Ajoute l'article
+    panier.push({ nom, prix });
+    localStorage.setItem("panier", JSON.stringify(panier));
+
+    // Affiche une confirmation
+    const confirmation = document.createElement("div");
+    confirmation.innerText = "Ajouté à la commande !";
+    confirmation.style.position = "fixed";
+    confirmation.style.top = "20px";
+    confirmation.style.left = "50%";
+    confirmation.style.transform = "translateX(-50%)";
+    confirmation.style.backgroundColor = "#4CAF50";
+    confirmation.style.color = "white";
+    confirmation.style.padding = "10px 20px";
+    confirmation.style.borderRadius = "5px";
+    document.body.appendChild(confirmation);
+
+    setTimeout(() => {
+      confirmation.remove();
+    }, 3000);
+  });
+</script>
+
 	
 	
 </body>
