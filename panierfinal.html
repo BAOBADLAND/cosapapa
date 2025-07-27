@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -11,10 +11,8 @@
       background-image: url("Le-Chef-Le-Groupe-Annie-Famose.jpg");
       background-size: cover;
 	  background-attachment: fixed; <--/* ceci empêche l'image de défiler */-->
-      background-position: center;
-      background-repeat: no-repeat;
-      height: 100vh;
-    }
+   
+   
   </style>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -25,8 +23,7 @@
 	<a href="index.html">
 		<img src="cosapapa_logo.png" alt="Logo Osapapa" style="max-width: 300px; height: auto;">        <!--<h1>COSA PAPA ?</h1> 
         <p>Bienvenue – commandez, dégustez !</p>--> </a>
-    </header>
-
+    </header> -->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -45,7 +42,7 @@
     }
 
     .container {
-      background-color: rgba(245, 245, 220, 0.85); /* beige translucide */
+      background-color: rgba(245, 245, 220, 0.85);
       margin: 50px auto;
       padding: 30px;
       max-width: 600px;
@@ -70,8 +67,22 @@
     }
 
     button {
-      margin-left: 10px;
-      padding: 5px 10px;
+      display: block;
+      margin: 30px auto;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #commande-info {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    #qrcode {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
     }
   </style>
 </head>
@@ -80,13 +91,23 @@
     <h1>Votre commande</h1>
     <div id="panier"></div>
     <div class="total" id="total">Total : 0€</div>
+
+    <button onclick="envoyerCommande()">Envoyer ma commande</button>
+
+    <div id="commande-info"></div>
+    <div id="qrcode"></div>
   </div>
 
+  <!-- QRCode.js depuis CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
+
   <script>
+    let panier = [];
+
     function afficherPanier() {
       const panierDiv = document.getElementById("panier");
       const totalDiv = document.getElementById("total");
-      let panier = JSON.parse(localStorage.getItem("panier")) || [];
+      panier = JSON.parse(localStorage.getItem("panier")) || [];
 
       panierDiv.innerHTML = '';
       let total = 0;
@@ -104,18 +125,45 @@
     }
 
     function supprimer(index) {
-      let panier = JSON.parse(localStorage.getItem("panier")) || [];
       panier.splice(index, 1);
       localStorage.setItem("panier", JSON.stringify(panier));
       afficherPanier();
     }
 
+    function envoyerCommande() {
+      if (panier.length === 0) {
+        alert("Votre panier est vide.");
+        return;
+      }
+
+      const numero = "CMD" + Math.floor(Math.random() * 1000000);
+      const total = panier.reduce((sum, item) => sum + item.prix, 0).toFixed(2);
+      const liste = panier.map(p => p.nom).join(", ");
+      const contenuQR = `Commande : ${numero}\nArticles : ${liste}\nTotal : ${total}€`;
+
+      // Affichage texte
+      const infoDiv = document.getElementById("commande-info");
+      infoDiv.innerHTML = `
+        <h2>Commande envoyée !</h2>
+        <p><strong>Numéro :</strong> ${numero}</p>
+        <p><strong>Articles :</strong> ${liste}</p>
+        <p><strong>Total :</strong> ${total}€</p>
+      `;
+
+      // QR code
+      document.getElementById("qrcode").innerHTML = ""; // reset
+      new QRCode(document.getElementById("qrcode"), {
+        text: contenuQR,
+        width: 200,
+        height: 200
+      });
+
+      // Optionnel : vider le panier après envoi
+      localStorage.removeItem("panier");
+      afficherPanier();
+    }
+
     afficherPanier();
   </script>
-</body>
-</html>
-
-
-
 </body>
 </html>
