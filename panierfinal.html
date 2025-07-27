@@ -44,43 +44,48 @@
     .container {
       background-color: rgba(245, 245, 220, 0.85);
       margin: 50px auto;
-      padding: 30px;
-      max-width: 600px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      padding: 50px;
+      max-width: 90%;
+      width: 1000px;
+      border-radius: 20px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+      font-size: 22px;
     }
 
     h1 {
       text-align: center;
+      font-size: 40px;
     }
 
     .item {
-      margin-bottom: 10px;
-      font-size: 18px;
+      margin-bottom: 20px;
+      font-size: 22px;
     }
 
     .total {
       font-weight: bold;
-      margin-top: 20px;
-      font-size: 20px;
+      margin-top: 40px;
+      font-size: 28px;
       text-align: right;
     }
 
     button {
       display: block;
-      margin: 30px auto;
-      padding: 10px 20px;
-      font-size: 16px;
+      margin: 40px auto;
+      padding: 16px 32px;
+      font-size: 22px;
       cursor: pointer;
+      border-radius: 10px;
     }
 
     #commande-info {
-      margin-top: 30px;
+      margin-top: 40px;
       text-align: center;
+      font-size: 24px;
     }
 
     #qrcode {
-      margin-top: 20px;
+      margin-top: 30px;
       display: flex;
       justify-content: center;
     }
@@ -141,24 +146,23 @@
       const liste = panier.map(p => p.nom).join(", ");
       const contenuQR = `Commande : ${numero}\nArticles : ${liste}\nTotal : ${total}€`;
 
-      // Affichage texte
       const infoDiv = document.getElementById("commande-info");
       infoDiv.innerHTML = `
-        <h2>Commande envoyée !</h2>
+        <h2 style="font-size: 32px;">Commande envoyée !</h2>
         <p><strong>Numéro :</strong> ${numero}</p>
         <p><strong>Articles :</strong> ${liste}</p>
         <p><strong>Total :</strong> ${total}€</p>
       `;
 
-      // QR code
-      document.getElementById("qrcode").innerHTML = ""; // reset
+      // Générer QR code
+      document.getElementById("qrcode").innerHTML = "";
       new QRCode(document.getElementById("qrcode"), {
         text: contenuQR,
-        width: 200,
-        height: 200
+        width: 400,
+        height: 400
       });
 
-      // Optionnel : vider le panier après envoi
+      // Vider le panier
       localStorage.removeItem("panier");
       afficherPanier();
     }
