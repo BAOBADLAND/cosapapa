@@ -105,14 +105,4 @@ h2.toggle:hover {
 .menu-item {
   margin: 10px 0;
 }
-#ma-commande {
-  padding: 10px 20px;
-  font-size: 1rem;
-  height: auto;
-  width: auto;
-  margin-left: 20px;
-  white-space: nowrap;
-  background-color: #ddd;
-  color: black;
-}
 
