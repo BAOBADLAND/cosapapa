@@ -77,12 +77,14 @@ main {
     margin: 0;
     font-size: 1.1em;
     color: brown;
+	font-family: 'norican', cursive;
 }
 
 .menu-button p {
     margin: 0.5em 0 0;
     font-size: 0.9em;
-    color: #000000;;
+    color: #000000;
+	font-family: 'norican', cursive;
 }
 
 .content {

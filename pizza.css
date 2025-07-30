@@ -17,17 +17,26 @@ header {
 
 .menu-item h3 {
     margin-top: 0;
+	font-family: 'norican', cursive;
+	color : red ;
+}
+
+.menu-item p {
+    margin-top: 0;
+	font-family: 'norican', cursive;
+	
 }
 
 .menu-button {
     margin-top: 1rem;
     padding: 0.8rem 1.5rem;
-    background-color: #000;
+    background-color: green;
     color: white;
     border: none;
     border-radius: 6px;
     font-size: 1em;
     cursor: pointer;
+
 }
 
 .pizza-image {

@@ -26,6 +26,11 @@
 		<img src="cosapapa_logo.png" alt="Logo Osapapa" style="max-width: 300px; height: auto;">        <!--<h1>COSA PAPA ?</h1> 
         <p>Bienvenue – commandez, dégustez !</p>-->
     </header>
+	<div id="table-number-section" style="text-align: center; padding: 20px; background-color: rgba(255,255,255,0.8);">
+    <label for="table-number" style="font-size: 18px; font-weight: bold;">Veuillez indiquer votre numéro de table :</label><br>
+    <input type="number" id="table-number" placeholder="Ex: 12" style="font-size: 18px; padding: 8px; margin-top: 10px;">
+    <button onclick="validerTable()" style="font-size: 16px; padding: 8px 16px; margin-left: 10px;">Valider</button>
+</div>
     <main>
         <section class="menu-category">
             <h2 class="toggle">🍕 Famous Papa’s Pizza</h2>
@@ -179,6 +184,31 @@
       });
     });
   });
+</script>
+
+<script>
+function validerTable() {
+    const input = document.getElementById("table-number");
+    const numero = input.value.trim();
+
+    if (!numero) {
+        alert("Veuillez entrer un numéro de table pour continuer.");
+        return;
+    }
+
+    localStorage.setItem("numeroTable", numero);
+    document.getElementById("table-number-section").style.display = "none";
+    document.querySelector("main").style.display = "block";
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Cacher le menu si aucun numéro de table
+    if (!localStorage.getItem("numeroTable")) {
+        document.querySelector("main").style.display = "none";
+    } else {
+        document.getElementById("table-number-section").style.display = "none";
+    }
+});
 </script>
 </body>
 </html>

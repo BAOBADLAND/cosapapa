@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Cuisine - Préparation</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-image: url("Le-Chef-Le-Groupe-Annie-Famose.jpg");
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      font-family: sans-serif;
+    }
+
+    .container {
+      background-color: rgba(245, 245, 220, 0.85);
+      margin: 50px auto;
+      padding: 50px;
+      max-width: 90%;
+      width: 1000px;
+      border-radius: 20px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+      font-size: 22px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 55px;
+    }
+
+    .commande {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 30px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+
+    .commande h2 {
+      font-size: 40px;
+      border-bottom: 2px solid #444;
+      margin-bottom: 20px;
+    }
+
+    .article {
+      font-size: 28px;
+      margin-bottom: 15px;
+      padding: 10px;
+      border-radius: 8px;
+      background-color: #fdfdfd;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .preparation {
+      background-color: #ffe066 !important;
+    }
+
+    .pret {
+      background-color: #b6fcb6 !important;
+    }
+
+    .btn {
+      padding: 8px 14px;
+      font-size: 18px;
+      margin-left: 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-preparer {
+      background-color: #f39c12;
+      color: white;
+    }
+
+    .btn-pret {
+      background-color: #27ae60;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Commandes en Cuisine</h1>
+    <div id="commandes-cuisine"></div>
+	<br>
+	<button onclick="resetCommandes()" style="background:red;color:white;">Vider les commandes</button>
+
+  </div>
+
+  <script>
+    function afficherCommandesCuisine() {
+      const container = document.getElementById("commandes-cuisine");
+      container.innerHTML = "";
+
+      const commandes = JSON.parse(localStorage.getItem("commandes")) || {};
+
+      for (const [id, commande] of Object.entries(commandes)) {
+        // On filtre uniquement les articles envoyés au cuisinier
+        const articlesPrepa = commande.articles.filter(article => article.sent);
+
+        if (articlesPrepa.length === 0) continue;
+
+        const blocCommande = document.createElement("div");
+        blocCommande.className = "commande";
+        blocCommande.innerHTML = `<h2>Commande ${id} - Table ${commande.table}</h2>`;
+
+        articlesPrepa.forEach((article, index) => {
+          const ligne = document.createElement("div");
+          ligne.className = "article";
+          ligne.innerHTML = `
+            <span>${article.nom} - ${article.prix}€</span>
+            <div>
+              <button class="btn btn-preparer">En préparation</button>
+              <button class="btn btn-pret">Prêt</button>
+            </div>
+          `;
+
+          const btnPreparer = ligne.querySelector(".btn-preparer");
+          const btnPret = ligne.querySelector(".btn-pret");
+
+          btnPreparer.addEventListener("click", () => {
+            ligne.classList.add("preparation");
+            ligne.classList.remove("pret");
+          });
+
+          btnPret.addEventListener("click", () => {
+            ligne.classList.add("pret");
+            ligne.classList.remove("preparation");
+          });
+
+          blocCommande.appendChild(ligne);
+        });
+
+        container.appendChild(blocCommande);
+      }
+    }
+
+    const channel = new BroadcastChannel("cuisine_channel");
+    channel.onmessage = () => afficherCommandesCuisine();
+
+    afficherCommandesCuisine();
+	
+	function resetCommandes() {
+  if (confirm("Supprimer toutes les commandes ?")) {
+    localStorage.removeItem("commandes");
+    afficherCommandes();
+  }
+}
+
+  </script>
+</body>
+</html>

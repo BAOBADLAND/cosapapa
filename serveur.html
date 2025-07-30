@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Serveur</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-image: url("Le-Chef-Le-Groupe-Annie-Famose.jpg");
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      font-family: sans-serif;
+    }
+
+    .container {
+      background-color: rgba(245, 245, 220, 0.85);
+      margin: 50px auto;
+      padding: 50px;
+      max-width: 90%;
+      width: 1000px;
+      border-radius: 20px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+      font-size: 22px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 55px;
+    }
+
+    .commande {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 30px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+
+    .commande h2 {
+      font-size: 40px;
+      border-bottom: 2px solid #444;
+      margin-bottom: 20px;
+    }
+
+    .article {
+      font-size: 28px;
+      margin-bottom: 15px;
+      padding: 10px;
+      border-radius: 8px;
+      background-color: #fdfdfd;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .confirme {
+      background-color: #cce5ff;
+    }
+
+    button {
+      font-size: 20px;
+      padding: 8px 14px;
+      margin-left: 10px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:nth-child(1) {
+      background-color: #3498db;
+      color: white;
+    }
+
+    button:nth-child(2) {
+      background-color: #e74c3c;
+      color: white;
+    }
+
+    .commande > button {
+      margin-top: 20px;
+      background-color: orange;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 20px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Commandes Serveur</h1>
+    <div id="commandes"></div>
+	<br>
+	<button onclick="resetCommandes()" style="background:red;color:white;">Vider les commandes</button>
+
+	
+  </div>
+
+  <script>
+    function afficherCommandes() {
+      const commandesDiv = document.getElementById("commandes");
+      commandesDiv.innerHTML = "";
+      const commandes = JSON.parse(localStorage.getItem("commandes")) || {};
+
+      for (const [id, commande] of Object.entries(commandes)) {
+        const div = document.createElement("div");
+        div.className = "commande";
+        div.innerHTML = `<h2>Commande ${id} (Table ${commande.table})</h2>`;
+
+        commande.articles.forEach((article, index) => {
+          const artDiv = document.createElement("div");
+          artDiv.className = "article";
+          if (article.status === "confirme") artDiv.classList.add("confirme");
+
+          artDiv.innerHTML = `
+            <span>${article.nom} - ${article.prix}€</span>
+            <div>
+              <button onclick="confirmer('${id}', ${index})">Confirmer</button>
+              <button onclick="supprimer('${id}', ${index})">Supprimer</button>
+            </div>
+          `;
+          div.appendChild(artDiv);
+        });
+
+        const envoyerBtn = document.createElement("button");
+        envoyerBtn.innerText = "Envoyer au cuisinier";
+        envoyerBtn.onclick = () => envoyerCuisinier(id);
+        div.appendChild(envoyerBtn);
+
+        commandesDiv.appendChild(div);
+      }
+    }
+
+    function confirmer(commandeId, articleIndex) {
+      const commandes = JSON.parse(localStorage.getItem("commandes"));
+      commandes[commandeId].articles[articleIndex].status = "confirme";
+      localStorage.setItem("commandes", JSON.stringify(commandes));
+      afficherCommandes();
+    }
+
+    function supprimer(commandeId, articleIndex) {
+      const commandes = JSON.parse(localStorage.getItem("commandes"));
+      commandes[commandeId].articles.splice(articleIndex, 1);
+      localStorage.setItem("commandes", JSON.stringify(commandes));
+      afficherCommandes();
+    }
+
+    function envoyerCuisinier(commandeId) {
+      const commandes = JSON.parse(localStorage.getItem("commandes"));
+      commandes[commandeId].articles.forEach(article => article.sent = true);
+      localStorage.setItem("commandes", JSON.stringify(commandes));
+      const channel = new BroadcastChannel("cuisine_channel");
+      channel.postMessage("update");
+    }
+
+    const channel = new BroadcastChannel("cuisine_channel");
+    channel.onmessage = () => afficherCommandes();
+
+    afficherCommandes();
+	
+	function resetCommandes() {
+  if (confirm("Supprimer toutes les commandes ?")) {
+    localStorage.removeItem("commandes");
+    afficherCommandes();
+  }
+}
+
+	
+  </script>
+</body>
+</html>
